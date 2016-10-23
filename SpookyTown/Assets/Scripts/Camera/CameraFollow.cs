@@ -9,8 +9,6 @@ namespace Assets.Scripts.Camera
 
         private Vector3 origin;
 
-        private Vector3 diference;
-
         // ReSharper disable once UnusedMember.Local
         private void Start()
         {
@@ -27,7 +25,7 @@ namespace Assets.Scripts.Camera
 
             if (Input.GetMouseButton(0))
             {
-                diference = MousePos() - transform.position;
+                var diference = MousePos() - transform.position;
                 transform.position = origin - diference;
             }
 
