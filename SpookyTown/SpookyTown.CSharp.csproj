@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraZoom.cs" />
+    <Compile Include="Assets\Scripts\DragTransform.cs" />
     <Compile Include="Assets\Scripts\Grid\GridManager.cs" />
     <Compile Include="Assets\Scripts\Grid\Node.cs" />
   </ItemGroup>

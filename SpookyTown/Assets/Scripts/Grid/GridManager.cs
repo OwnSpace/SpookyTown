@@ -341,10 +341,14 @@ public class GridManager : MonoBehaviour
             }
             else
             {
-                Gizmos.color = node.walkable ? Color.green : Color.red;
+                var c = node.walkable ? Color.green : Color.red;
+                c.a = 0.5f;
+                Gizmos.color = c;
             }
 
             Gizmos.DrawCube(node.position, new Vector3(nodeDiameter - 0.2f, 0.2f, nodeDiameter - 0.2f));
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(node.position, 0.08f);
         }
 
         //var width = numCols * cellWidth;

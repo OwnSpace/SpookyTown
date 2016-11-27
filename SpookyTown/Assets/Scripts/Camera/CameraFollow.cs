@@ -25,8 +25,8 @@ namespace Assets.Scripts.Camera
 
             if (Input.GetMouseButton(0))
             {
-                var diference = MousePos() - transform.position;
-                transform.position = origin - diference;
+                var difference = MousePos() - transform.position;
+                transform.position = origin - difference;
             }
 
             if (Input.GetMouseButton(1))
