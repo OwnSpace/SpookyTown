@@ -1,48 +1,51 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 
-public class CameraZoom : MonoBehaviour
+namespace Assets.Scripts.Camera
 {
-    public float maxFov = 25.0f;
-
-    public float minFov = 2.0f;
-
-    public float stepFov = 2.0f;
-
-    public float sizeMax = 5.0f;
-
-    public float sizeMin = 1.0f;
-
-    public float sizeStep = 0.5f;
-
-    [UsedImplicitly]
-    private void LateUpdate()
+    public class CameraZoom : MonoBehaviour
     {
-        var scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll < 0)
+        public float maxFov = 25f;
+
+        public float minFov = 2f;
+
+        public float stepFov = 2f;
+
+        public float sizeMax = 5f;
+
+        public float sizeMin = 1f;
+
+        public float sizeStep = 0.5f;
+
+        [UsedImplicitly]
+        private void LateUpdate()
         {
-            if (Camera.main.fieldOfView <= maxFov)
+            var mainCamera = UnityEngine.Camera.main;
+            var scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (scroll < 0)
             {
-                Camera.main.fieldOfView += stepFov;
+                if (mainCamera.fieldOfView <= maxFov)
+                {
+                    mainCamera.fieldOfView += stepFov;
+                }
+
+                if (mainCamera.orthographicSize <= sizeMax)
+                {
+                    mainCamera.orthographicSize += sizeStep;
+                }
             }
 
-            if (Camera.main.orthographicSize <= sizeMax)
+            if (scroll > 0)
             {
-                Camera.main.orthographicSize += sizeStep;
-            }
+                if (mainCamera.fieldOfView > minFov)
+                {
+                    mainCamera.fieldOfView -= stepFov;
+                }
 
-        }
-
-        if (scroll > 0)
-        {
-            if (Camera.main.fieldOfView > minFov)
-            {
-                Camera.main.fieldOfView -= stepFov;
-            }
-
-            if (Camera.main.orthographicSize >= sizeMin)
-            {
-                Camera.main.orthographicSize -= sizeStep;
+                if (mainCamera.orthographicSize >= sizeMin)
+                {
+                    mainCamera.orthographicSize -= sizeStep;
+                }
             }
         }
     }

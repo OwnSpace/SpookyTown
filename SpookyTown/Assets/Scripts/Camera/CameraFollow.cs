@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 
-// ReSharper disable once UnusedMember.Global
 namespace Assets.Scripts.Camera
 {
     public class CameraFollow : MonoBehaviour
@@ -15,7 +15,7 @@ namespace Assets.Scripts.Camera
             resetCamera = UnityEngine.Camera.main.transform.position;
         }
 
-        // ReSharper disable once UnusedMember.Local
+        [UsedImplicitly]
         private void LateUpdate()
         {
             if (Input.GetMouseButtonDown(0))

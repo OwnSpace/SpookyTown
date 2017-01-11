@@ -2,54 +2,45 @@
 
 using UnityEngine;
 
-public class Node : IComparable
+namespace Assets.Scripts.Grid
 {
-    public float nodeTotalCost = 1;
-
-    public float estimatedCost = 0.0f;
-
-    public bool isObstacle;
-
-    public Node parent = null;
-
-    public Vector3 position;
-
-    public bool walkable;
-
-    public Node(Vector3 position, bool walkable)
+    public class Node : IComparable
     {
-        this.position = position;
-        this.walkable = walkable;
-    }
+        public float estimatedCost = 0f;
 
-    public void MarkAsObstacle()
-    {
-        isObstacle = true;
-    }
+        public Vector3 position;
 
-    public void MarkAsFree()
-    {
-        isObstacle = false;
-    }
+        public bool walkable;
 
-    public int CompareTo(object obj)
-    {
-        var node = obj as Node;
-        if (node == null)
+        public Node(Vector3 position, bool walkable) : this(walkable)
         {
-            return -1;
+            this.position = position;
         }
 
-        if (estimatedCost < node.estimatedCost)
+        public Node(bool walkable)
         {
-            return -1;
+            this.walkable = walkable;
         }
 
-        if (estimatedCost > node.estimatedCost)
+        public int CompareTo(object obj)
         {
-            return 1;
-        }
+            var node = obj as Node;
+            if (node == null)
+            {
+                return -1;
+            }
 
-        return 0;
+            if (estimatedCost < node.estimatedCost)
+            {
+                return -1;
+            }
+
+            if (estimatedCost > node.estimatedCost)
+            {
+                return 1;
+            }
+
+            return 0;
+        }
     }
 }

@@ -1,8 +1,11 @@
 ﻿using Assets.Scripts.Camera;
+using Assets.Scripts.Grid;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
+    [UsedImplicitly]
     public class DragTransform : MonoBehaviour
     {
         private readonly Color mouseOverColor = Color.blue;
@@ -27,8 +30,6 @@ namespace Assets.Scripts
 
         private Transform tr;
 
-        public float speed = 6.0f;
-
         private Plane movePlane;
 
         private float fixedDistance;
@@ -43,6 +44,9 @@ namespace Assets.Scripts
 
         private Vector3 corPoint;
 
+        public float speed = 6f;
+
+        [UsedImplicitly]
         private void Start()
         {
             renderer = GetComponent<Renderer>();
@@ -57,16 +61,19 @@ namespace Assets.Scripts
             fixedDistance = pos.y;
         }
 
+        [UsedImplicitly]
         private void OnMouseEnter()
         {
             renderer.material.color = mouseOverColor;
         }
 
+        [UsedImplicitly]
         private void OnMouseExit()
         {
             renderer.material.color = originalColor;
         }
 
+        [UsedImplicitly]
         private void OnMouseDown()
         {
             movePlane = new Plane(-UnityEngine.Camera.main.transform.forward, transform.position);
@@ -74,6 +81,7 @@ namespace Assets.Scripts
             ToggleCamera(false);
         }
 
+        [UsedImplicitly]
         private void OnMouseDrag()
         {
             camRay = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -89,12 +97,14 @@ namespace Assets.Scripts
             }
         }
 
+        [UsedImplicitly]
         private void OnMouseUp()
         {
             FitPositionToNodeSize();
             ToggleCamera(true);
         }
 
+        [UsedImplicitly]
         private void Update()
         {
             Movement();
